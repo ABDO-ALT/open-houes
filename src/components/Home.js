@@ -3,19 +3,26 @@ import "../App";
 import { Link } from "react-router-dom";
 function Home() {
   return (
-    <div>
-      <h1>Home page</h1>
-      <h1 className="host">
+    <div className="home">
+      <div>
+        <h1 className="titel">Welcom to our project</h1>
+        <h3 className="informations">
+          To register as a host, press the Host button
+        </h3>
+        <h3 className="informations">
+          To register as a guest, press the guest button
+        </h3>
+      </div>
+      <div>
         <Link to="/Host">
           <button className="host">Host</button>
         </Link>
-      </h1>
-      <h1 className="guest">
+
         <Link to="/Guest">
           {" "}
-          <button className="gest">Guest</button>
+          <button className="guest">Guest</button>
         </Link>
-      </h1>
+      </div>
     </div>
   );
 }
