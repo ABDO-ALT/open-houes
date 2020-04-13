@@ -1,10 +1,12 @@
 import React from "react";
 import "../App";
+import HostForm from "./HostForm";
 
 function Host() {
   return (
     <div>
-      <h1>Host page</h1>
+      <h1 className="titleOfHost">Host Sing Up</h1>
+      <HostForm />
     </div>
   );
 }

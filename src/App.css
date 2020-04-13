@@ -1,6 +1,7 @@
 body {
   margin: 0;
-  font-family: "work Sans", sans-serif; 
+  font-family: "work Sans", sans-serif;
+  background-image: url("");
   }
 
 .container {
@@ -109,4 +110,11 @@ nav a:hover::before {
   transition: all 0.3s ease 0s;
   background-color: #55d6aa;
   color: rgb(73, 14, 14);
+}
+
+.titleOfHost{
+  text-align: center;
+}
+.titleOfGuest{
+  text-align: center;
 }
