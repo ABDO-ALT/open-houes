@@ -1,7 +1,7 @@
 import React from "react";
 import "../App";
 import axios from "axios";
-class GuestForm extends React.Component {
+class GuestAndHostForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -12,7 +12,7 @@ class GuestForm extends React.Component {
       phone_number: "",
       age: "",
       user_type: "",
-      gender: "male",
+      gender: "",
     };
     this.handleChange = this.handleChange.bind(this);
   }
@@ -42,18 +42,6 @@ class GuestForm extends React.Component {
   };
 
   render() {
-    // function translateFormat(obj) {
-    //   const adult = obj.age > 18
-    //   return { adult }
-    // }
-
-    // // Client has age as number:
-    // const clientFormat = { age: 20 }
-
-    // // Database has column called "adult" which is true/false
-
-    // console.log("should not be adult: ", translateFormat({ age: 16}))
-    // console.log("should be adult: ", translateFormat({ age: 20}))
     const {
       first_name,
       last_name,
@@ -143,4 +131,4 @@ class GuestForm extends React.Component {
     );
   }
 }
-export default GuestForm;
+export default GuestAndHostForm;
