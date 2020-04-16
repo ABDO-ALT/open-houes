@@ -12,9 +12,15 @@ class GuestForm extends React.Component {
       phone_number: "",
       age: "",
       user_type: "",
-      gender: "",
+      gender: "male",
     };
+    this.handleChange = this.handleChange.bind(this);
   }
+
+  handleChange(e) {
+    this.setState({ gender: e.target.value });
+  }
+
   changeHandle = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
@@ -35,9 +41,19 @@ class GuestForm extends React.Component {
       });
   };
 
-  
-
   render() {
+    // function translateFormat(obj) {
+    //   const adult = obj.age > 18
+    //   return { adult }
+    // }
+
+    // // Client has age as number:
+    // const clientFormat = { age: 20 }
+
+    // // Database has column called "adult" which is true/false
+
+    // console.log("should not be adult: ", translateFormat({ age: 16}))
+    // console.log("should be adult: ", translateFormat({ age: 20}))
     const {
       first_name,
       last_name,
@@ -113,20 +129,15 @@ class GuestForm extends React.Component {
           onChange={this.changeHandle}
         ></input>
         <br />
-        <input
-          type="checkbox"
-          name="gender"
-          value={gender}
-          onChange={this.changeHandle}
-        />
-        female
-        <input
-          type="checkbox"
-          name="gender"
-          value={gender}
-          onChange={this.changeHandle}
-        />
-        male <br />
+        <select value={gender} onChange={this.handleChange}>
+          <option name="male" value="male">
+            {" "}
+            Male
+          </option>
+          <option name="female" value="famale">
+            Female
+          </option>
+        </select>
         <button type="submit"> Logo in</button>
       </form>
     );
