@@ -1,7 +1,11 @@
 body {
   margin: 0;
   font-family: "work Sans", sans-serif;
-  background-image: url("");
+  background-image: url("mylove.jpg");
+  background-attachment: fixed;
+  background-position: center;
+  min-height: 400px;
+  
   }
 
 .container {

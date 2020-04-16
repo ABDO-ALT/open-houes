@@ -5,7 +5,7 @@ function Home() {
   return (
     <div className="home">
       <div>
-        <h1 className="titel">Welcom to our project</h1>
+        <h1 className="titel">Welcome to our project</h1>
         <h3 className="informations">
           To register as a host, press the Host button
         </h3>
