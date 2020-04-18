@@ -1,8 +1,20 @@
 import React from "react";
 import "../App";
 import axios from "axios";
+
 class GuestAndHostForm extends React.Component {
   constructor(props) {
+    // Two ways:
+    // 1. props
+    // if I can print out here, something that says
+    // "guest" or "host", my job is almost done!
+    console.log("Props in GuestAndHostForm: ", props);
+
+    // Can we put into this variable,
+    // "guest" of "host" based on what the
+    // user clicked in the home page.
+    const user_type = props.user_type;
+
     super(props);
     this.state = {
       first_name: "",
@@ -11,12 +23,16 @@ class GuestAndHostForm extends React.Component {
       city: "",
       phone_number: "",
       age: "",
-      user_type: "",
-      gender: "",
+      user_type: user_type,
+      gender: "male",
     };
     this.handleChange = this.handleChange.bind(this);
+    this.userHandleChange = this.userHandleChange.bind(this);
   }
 
+  userHandleChange(e) {
+    this.setState({ user_type: e.target.value });
+  }
   handleChange(e) {
     this.setState({ gender: e.target.value });
   }
@@ -49,7 +65,6 @@ class GuestAndHostForm extends React.Component {
       city,
       phone_number,
       age,
-      user_type,
       gender,
     } = this.state;
     return (
@@ -108,14 +123,8 @@ class GuestAndHostForm extends React.Component {
           onChange={this.changeHandle}
         ></input>
         <br />
-        <label> ?</label>
+        <label>Your gender</label>
         <br />
-        <input
-          type="text"
-          name="user_type"
-          value={user_type}
-          onChange={this.changeHandle}
-        ></input>
         <br />
         <select value={gender} onChange={this.handleChange}>
           <option name="male" value="male">
@@ -126,6 +135,7 @@ class GuestAndHostForm extends React.Component {
             Female
           </option>
         </select>
+        <br />
         <button type="submit"> Logo in</button>
       </form>
     );

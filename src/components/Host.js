@@ -6,7 +6,7 @@ function Host() {
   return (
     <div>
       <h1 className="titleOfHost">Host Sing Up</h1>
-      <GuestAndHostForm />
+      <GuestAndHostForm user_type = "Host" />
     </div>
   );
 }

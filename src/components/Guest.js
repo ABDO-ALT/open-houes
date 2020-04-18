@@ -4,8 +4,8 @@ import GuestAndHostForm from "./GuestAndHostForm";
 function Guest() {
   return (
     <div>
-      <h1 className="titleOfGuest">Guest Sing Up</h1>
-      <GuestAndHostForm />
+      <h1 className="titleOfGuest">Guest Sing Up</h1>      
+      <GuestAndHostForm  user_type = "Guest" />
     </div>
   );
 }
