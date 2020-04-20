@@ -4,15 +4,6 @@ import axios from "axios";
 
 class GuestAndHostForm extends React.Component {
   constructor(props) {
-    // Two ways:
-    // 1. props
-    // if I can print out here, something that says
-    // "guest" or "host", my job is almost done!
-    console.log("Props in GuestAndHostForm: ", props);
-
-    // Can we put into this variable,
-    // "guest" of "host" based on what the
-    // user clicked in the home page.
     const user_type = props.user_type;
 
     super(props);
@@ -25,6 +16,7 @@ class GuestAndHostForm extends React.Component {
       age: "",
       user_type: user_type,
       gender: "male",
+      password: "",
     };
     this.handleChange = this.handleChange.bind(this);
     this.userHandleChange = this.userHandleChange.bind(this);
@@ -66,6 +58,7 @@ class GuestAndHostForm extends React.Component {
       phone_number,
       age,
       gender,
+      password,
     } = this.state;
     return (
       <form onSubmit={this.submitHandle}>
@@ -73,6 +66,7 @@ class GuestAndHostForm extends React.Component {
         <br />
         <input
           type="text"
+          required="required"
           name="first_name"
           value={first_name}
           onChange={this.changeHandle}
@@ -82,6 +76,7 @@ class GuestAndHostForm extends React.Component {
         <br />
         <input
           type="text"
+          required="required"
           name="last_name"
           value={last_name}
           onChange={this.changeHandle}
@@ -91,6 +86,7 @@ class GuestAndHostForm extends React.Component {
         <br />
         <input
           type="phone"
+          required="required"
           name="phone_number"
           value={phone_number}
           onChange={this.changeHandle}
@@ -100,6 +96,7 @@ class GuestAndHostForm extends React.Component {
         <br />
         <input
           name="email"
+          required="required"
           type="email"
           value={email}
           onChange={this.changeHandle}
@@ -118,13 +115,24 @@ class GuestAndHostForm extends React.Component {
         <br />
         <input
           type="text"
+          required="required"
           name="city"
           value={city}
           onChange={this.changeHandle}
         ></input>
         <br />
-        <label>Your gender</label>
+        <label> your password</label>
         <br />
+        <input
+          type="password"
+          required="required"
+          name="password"
+          value={password}
+          onChange={this.changeHandle}
+        ></input>
+
+        <br />
+        <label>Your gender</label>
         <br />
         <select value={gender} onChange={this.handleChange}>
           <option name="male" value="male">
