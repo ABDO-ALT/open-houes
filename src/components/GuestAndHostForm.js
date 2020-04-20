@@ -62,69 +62,76 @@ class GuestAndHostForm extends React.Component {
     } = this.state;
     return (
       <form onSubmit={this.submitHandle}>
-        <label>First Name</label>
+        <label htmlFor="First Name">First Name</label>
         <br />
         <input
           type="text"
+          id="First Name"
           required="required"
           name="first_name"
           value={first_name}
           onChange={this.changeHandle}
         ></input>
         <br />
-        <label>LastName</label>
+        <label htmlFor="LastName">Last Name</label>
         <br />
         <input
           type="text"
+          id="LastName"
           required="required"
           name="last_name"
           value={last_name}
           onChange={this.changeHandle}
         ></input>
         <br />
-        <label>Phone Number</label>
+        <label htmlFor="PhoneNumber">Phone Number</label>
         <br />
         <input
           type="phone"
+          id="PhoneNumber"
           required="required"
           name="phone_number"
           value={phone_number}
           onChange={this.changeHandle}
         ></input>
         <br />
-        <label>Email</label>
+        <label htmlFor="Email">Email</label>
         <br />
         <input
           name="email"
+          id="Email"
           required="required"
           type="email"
           value={email}
           onChange={this.changeHandle}
         ></input>
         <br />
-        <label> Your Age</label>
+        <label htmlFor="YourAge"> Your Age</label>
         <br />
         <input
           type="date"
+          id="YourAge"
           name="age"
           value={age}
           onChange={this.changeHandle}
         ></input>
         <br />
-        <label> your country</label>
+        <label htmlFor="yourCountry"> your country</label>
         <br />
         <input
           type="text"
+          id="yourCountry"
           required="required"
           name="city"
           value={city}
           onChange={this.changeHandle}
         ></input>
         <br />
-        <label> your password</label>
+        <label htmlFor="yourPassword"> your password</label>
         <br />
         <input
           type="password"
+          id="yourPassword"
           required="required"
           name="password"
           value={password}
