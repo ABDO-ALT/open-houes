@@ -15,13 +15,12 @@ class GuestAndHostForm extends React.Component {
       phone_number: "",
       age: "",
       user_type: user_type,
-      gender: "male",
+      gender: "Male",
       password: "",
     };
     this.handleChange = this.handleChange.bind(this);
     this.userHandleChange = this.userHandleChange.bind(this);
   }
-
   userHandleChange(e) {
     this.setState({ user_type: e.target.value });
   }
@@ -48,8 +47,8 @@ class GuestAndHostForm extends React.Component {
         console.log(error);
       });
   };
-
   render() {
+    
     const {
       first_name,
       last_name,
@@ -69,7 +68,7 @@ class GuestAndHostForm extends React.Component {
           id="First Name"
           required="required"
           name="first_name"
-          value={first_name}
+          value={first_name.charAt(0).toUpperCase() +first_name.slice(1)}
           onChange={this.changeHandle}
         ></input>
         <br />
@@ -80,7 +79,7 @@ class GuestAndHostForm extends React.Component {
           id="LastName"
           required="required"
           name="last_name"
-          value={last_name}
+          value={last_name.charAt(0).toUpperCase() +last_name.slice(1)}
           onChange={this.changeHandle}
         ></input>
         <br />
@@ -123,7 +122,7 @@ class GuestAndHostForm extends React.Component {
           id="yourCountry"
           required="required"
           name="city"
-          value={city}
+          value={city.charAt(0).toUpperCase() +city.slice(1)}
           onChange={this.changeHandle}
         ></input>
         <br />
@@ -142,11 +141,11 @@ class GuestAndHostForm extends React.Component {
         <label>Your gender</label>
         <br />
         <select value={gender} onChange={this.handleChange}>
-          <option name="male" value="male">
+          <option name="Male" value="Male">
             {" "}
             Male
           </option>
-          <option name="female" value="famale">
+          <option name="Female" value="Famale">
             Female
           </option>
         </select>
