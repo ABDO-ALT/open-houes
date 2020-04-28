@@ -1,7 +1,6 @@
 import React from "react";
 import "../App";
 import axios from "axios";
-
 class GuestAndHostForm extends React.Component {
   constructor(props) {
     const user_type = props.user_type;
@@ -48,7 +47,6 @@ class GuestAndHostForm extends React.Component {
       });
   };
   render() {
-    
     const {
       first_name,
       last_name,
@@ -68,7 +66,7 @@ class GuestAndHostForm extends React.Component {
           id="First Name"
           required="required"
           name="first_name"
-          value={first_name.charAt(0).toUpperCase() +first_name.slice(1)}
+          value={first_name.charAt(0).toUpperCase() + first_name.slice(1)}
           onChange={this.changeHandle}
         ></input>
         <br />
@@ -79,7 +77,7 @@ class GuestAndHostForm extends React.Component {
           id="LastName"
           required="required"
           name="last_name"
-          value={last_name.charAt(0).toUpperCase() +last_name.slice(1)}
+          value={last_name.charAt(0).toUpperCase() + last_name.slice(1)}
           onChange={this.changeHandle}
         ></input>
         <br />
@@ -122,7 +120,7 @@ class GuestAndHostForm extends React.Component {
           id="yourCountry"
           required="required"
           name="city"
-          value={city.charAt(0).toUpperCase() +city.slice(1)}
+          value={city.charAt(0).toUpperCase() + city.slice(1)}
           onChange={this.changeHandle}
         ></input>
         <br />
@@ -150,7 +148,7 @@ class GuestAndHostForm extends React.Component {
           </option>
         </select>
         <br />
-        <button type="submit"> Logo in</button>
+        <button type="submit">Logo in</button>
       </form>
     );
   }
