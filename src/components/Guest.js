@@ -8,7 +8,7 @@ function Guest(props) {
   return (
     <div>
       <h1 className="titleOfGuest">Guest Sing Up</h1>
-      <GuestAndHostForm user_type="Guest" />
+      <GuestAndHostForm user_type="Guest" loginCallback={props.loginCallback}/>
       <LoginForm loginCallback={props.loginCallback}/>
     </div>
   );

@@ -27,7 +27,7 @@ class LoginForm extends React.Component {
     axios
       .post(this.myfech(), this.state)
 
-      .then((response) => {
+      .then(() => {
         //console.log(response);
         this.props.loginCallback();
         this.props.history.push("Showdata");

@@ -1,6 +1,7 @@
 import React from "react";
 import "../App";
 import axios from "axios";
+import { withRouter } from "react-router-dom";
 class GuestAndHostForm extends React.Component {
   constructor(props) {
     const user_type = props.user_type;
@@ -36,14 +37,23 @@ class GuestAndHostForm extends React.Component {
   }
   submitHandle = (e) => {
     e.preventDefault();
-    console.log(this.state);
+   // console.log(this.state);
     axios
       .post(this.myfech(), this.state)
-      .then((response) => {
-        console.log(response);
+      .then(() => {
+        //console.log(response);
+        this.props.loginCallback();
+        this.props.history.push("Showdata");
       })
       .catch((error) => {
         console.log(error);
+        // //this.setState({ errorMessage: error });
+        if (error.response.status === 500) {
+          this.setState({ errorMessage: error.response.data });
+        } else {
+          //console.log("Error", error.message)
+          this.setState({ errorMessage: error });
+        }
       });
   };
   render() {
@@ -59,6 +69,9 @@ class GuestAndHostForm extends React.Component {
     } = this.state;
     return (
       <form onSubmit={this.submitHandle}>
+        {this.state.errorMessage && (
+          <h3 className="error"> {this.state.errorMessage} </h3>
+        )}
         <label htmlFor="First Name">First Name</label>
         <br />
         <input
@@ -153,4 +166,4 @@ class GuestAndHostForm extends React.Component {
     );
   }
 }
-export default GuestAndHostForm;
+export default withRouter(GuestAndHostForm);
