@@ -9,8 +9,11 @@ class LoginForm extends React.Component {
     this.state = {
       email: "",
       password: "",
+      errorMessage: "",
     };
+   // console.log("Login form", this.props);
   }
+
   changeHandle = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
@@ -20,21 +23,27 @@ class LoginForm extends React.Component {
   }
   submitHandle = (e) => {
     e.preventDefault();
-    console.log(this.state);
+    //console.log(this.state);
     axios
       .post(this.myfech(), this.state)
 
       .then((response) => {
-        console.log(response);
-        if (response.status === 200) {
-          this.props.history.push("Showdata");
-        }
+        //console.log(response);
+        this.props.loginCallback();
+        this.props.history.push("Showdata");
       })
       .catch((error) => {
-        if (error) {
-          console.log("password Or Email it's not correct ");
+        //console.log(error);
+        //this.setState({ errorMessage: error });
+        if (error.response.status === 404) {
+          this.setState({ errorMessage: error.response.data });
+        } else if (error.response.status === 401) {
+          this.setState({ errorMessage: error.response.data });
+          // console.log("request", error.request);
+        } else {
+          //console.log("Error", error.message);
+          this.setState({ errorMessage: error });
         }
-        console.log("dcndeckncncn", error);
       });
   };
 
@@ -42,6 +51,9 @@ class LoginForm extends React.Component {
     const { email, password } = this.state;
     return (
       <form onSubmit={this.submitHandle}>
+        {this.state.errorMessage && (
+          <h3 className="error"> {this.state.errorMessage} </h3>
+        )}
         <label htmlFor="EmailLogin">Email</label>
         <br />
         <input

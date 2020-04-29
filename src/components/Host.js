@@ -2,12 +2,14 @@ import React from "react";
 import "../App";
 import GuestAndHostForm from "./GuestAndHostForm";
 import LoginForm from "./LoginForm";
-function Host() {
+
+function Host(props) {
+  //console.log('Host props: ', props)
   return (
     <div>
       <h1 className="titleOfHost">Host Sing Up</h1>
       <GuestAndHostForm user_type="Host" />
-      <LoginForm />
+      <LoginForm loginCallback={props.loginCallback} />
     </div>
   );
 }
