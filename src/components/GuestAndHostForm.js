@@ -11,7 +11,7 @@ class GuestAndHostForm extends React.Component {
       first_name: "",
       last_name: "",
       email: "",
-      city: "",
+      country: "",
       phone_number: "",
       age: "",
       user_type: user_type,
@@ -37,7 +37,7 @@ class GuestAndHostForm extends React.Component {
   }
   submitHandle = (e) => {
     e.preventDefault();
-   // console.log(this.state);
+    // console.log(this.state);
     axios
       .post(this.myfech(), this.state)
       .then(() => {
@@ -61,7 +61,7 @@ class GuestAndHostForm extends React.Component {
       first_name,
       last_name,
       email,
-      city,
+      country,
       phone_number,
       age,
       gender,
@@ -132,8 +132,8 @@ class GuestAndHostForm extends React.Component {
           type="text"
           id="yourCountry"
           required="required"
-          name="city"
-          value={city.charAt(0).toUpperCase() + city.slice(1)}
+          name="country"
+          value={country.charAt(0).toUpperCase() + country.slice(1)}
           onChange={this.changeHandle}
         ></input>
         <br />
@@ -147,7 +147,6 @@ class GuestAndHostForm extends React.Component {
           value={password}
           onChange={this.changeHandle}
         ></input>
-
         <br />
         <label>Your gender</label>
         <br />
@@ -161,7 +160,7 @@ class GuestAndHostForm extends React.Component {
           </option>
         </select>
         <br />
-        <button type="submit">Logo in</button>
+        <button type="submit">Sign in</button>
       </form>
     );
   }

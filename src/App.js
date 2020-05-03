@@ -13,15 +13,29 @@ import Showdata from "./components/Showdata";
 class App extends React.Component {
   constructor(props) {
     super(props);
+
+    // CHANGE STATE TO INCLUDE USER INFO!
+    // state = { user: { id: 123, first_name: 'Abdo' }}
+    // if state.user exists, user is logged in
+    // if state.user does not exist, user is not logged in
+
     this.state = {
       loggedIn: false,
+      first_name: "",
+      id: "",
     };
     this.loginCallback = this.loginCallback.bind(this);
   }
 
-  loginCallback() {
-    console.log("login callback!");
-    this.setState({ loggedIn: true });
+  loginCallback(respons) {
+    // Get user info from here and add to state
+
+    console.log("respons of call back", respons);
+    this.setState({
+      loggedIn: true,
+      id: respons.id,
+      first_name: respons.first_name,
+    });
   }
   render() {
     //    console.log("state of App: ", this.state);

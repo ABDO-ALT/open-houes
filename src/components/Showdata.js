@@ -6,13 +6,13 @@ class Showdata extends React.Component {
     super(props);
     this.state = {};
   }
-
+  
   render() {
-     // console.log('abdo',this.props.loginCallback.loggedIn)
+      console.log('abdo',this.props.loginCallback.first_name)
     if ( this.props.loginCallback.loggedIn!== true) {
       return <p> YOU CANT SEE THIS!</p>
     }
-    return <h1>hi - secret stuff </h1>;
+  return <h1>hi - Welcome {this.props.loginCallback.first_name}</h1>;
   }
 }
 export default Showdata;

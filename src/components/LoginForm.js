@@ -27,9 +27,19 @@ class LoginForm extends React.Component {
     axios
       .post(this.myfech(), this.state)
 
-      .then(() => {
-        //console.log(response);
-        this.props.loginCallback();
+      .then((response) => {
+        
+        console.log('myresponse',response.data);
+        
+        // 1. get "user" object from server response
+        // user object should look like this: { 'name': 'abdo', 'email': 'foo@bar.com', 'id': 123 }
+
+        // send user object to App component
+         this.props.loginCallback(response.data);
+         console.log()
+        
+        //this.props.loginCallback();
+
         this.props.history.push("Showdata");
       })
       .catch((error) => {
