@@ -37,13 +37,18 @@ class GuestAndHostForm extends React.Component {
   }
   submitHandle = (e) => {
     e.preventDefault();
-    // console.log(this.state);
+    console.log("this.sdsf", this.state);
     axios
       .post(this.myfech(), this.state)
-      .then(() => {
-        //console.log(response);
-        this.props.loginCallback();
-        this.props.history.push("Showdata");
+      .then((response) => {
+        console.log("regstr",response.data );
+        this.props.loginCallback(response.data);
+        if(response.data.user_type === 'Guest'){
+          console.log('yes')
+          this.props.history.push("ShowDataToGuest");
+        }else{
+          this.props.history.push("ShowDataToHost");
+        }
       })
       .catch((error) => {
         console.log(error);

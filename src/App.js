@@ -7,7 +7,8 @@ import About from "./components/About";
 import Contact from "./components/Contact";
 import Host from "./components/Host";
 import Guest from "./components/Guest";
-import Showdata from "./components/Showdata";
+import ShowDataToGuest from "./components/ShowDataToGuest";
+import ShowDataToHost from "./components/ShowDataToHost";
 
 // App is not a class, it is a function!
 class App extends React.Component {
@@ -23,6 +24,7 @@ class App extends React.Component {
       loggedIn: false,
       first_name: "",
       id: "",
+      user_type: "",
     };
     this.loginCallback = this.loginCallback.bind(this);
   }
@@ -35,6 +37,7 @@ class App extends React.Component {
       loggedIn: true,
       id: respons.id,
       first_name: respons.first_name,
+      user_type: respons.user_type,
     });
   }
   render() {
@@ -55,8 +58,12 @@ class App extends React.Component {
             render={() => <Guest loginCallback={this.loginCallback} />}
           />
           <Route
-            path="/Showdata"
-            render={() => <Showdata loginCallback={this.state} />}
+            path="/ShowDataToGuest"
+            render={() => <ShowDataToGuest loginCallback={this.state} />}
+          />
+          <Route
+            path="/ShowDataToHost"
+            render={() => <ShowDataToHost loginCallback={this.state} />}
           />
         </Switch>
       </Router>

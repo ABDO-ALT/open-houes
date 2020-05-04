@@ -11,7 +11,7 @@ class LoginForm extends React.Component {
       password: "",
       errorMessage: "",
     };
-   // console.log("Login form", this.props);
+    // console.log("Login form", this.props);
   }
 
   changeHandle = (e) => {
@@ -28,19 +28,22 @@ class LoginForm extends React.Component {
       .post(this.myfech(), this.state)
 
       .then((response) => {
-        
-        console.log('myresponse',response.data);
-        
+        console.log("myresponse", response.data.user_type);
+
         // 1. get "user" object from server response
         // user object should look like this: { 'name': 'abdo', 'email': 'foo@bar.com', 'id': 123 }
 
         // send user object to App component
-         this.props.loginCallback(response.data);
-         console.log()
-        
+        this.props.loginCallback(response.data);
         //this.props.loginCallback();
+        if(response.data.user_type === 'Guest'){
+          console.log('yes')
+          this.props.history.push("ShowDataToGuest");
+        }else{
+          this.props.history.push("ShowDataToHost");
+        }
 
-        this.props.history.push("Showdata");
+        
       })
       .catch((error) => {
         //console.log(error);
