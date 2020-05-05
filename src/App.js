@@ -46,9 +46,9 @@ class App extends React.Component {
       <Router>
         <MainBar />
         <Switch>
-          <Route path="/" exact component={Home} />
-          <Route path="/about" component={About} />
-          <Route path="/contact" component={Contact} />
+          <Route path="/" exact render={() => <Home />} />
+          <Route path="/about" render={() => <About />} />
+          <Route path="/contact" render={() => <Contact />} />
           <Route
             path="/Host"
             render={() => <Host loginCallback={this.loginCallback} />}
