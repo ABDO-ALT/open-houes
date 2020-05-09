@@ -1,7 +1,7 @@
 import React from "react";
 import "../App";
 import axios from "axios";
-class ShowDataToHost extends React.Component {
+class CreateRoomsForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -85,5 +85,5 @@ class ShowDataToHost extends React.Component {
     );
   }
 }
-export default ShowDataToHost;
+export default CreateRoomsForm;
 

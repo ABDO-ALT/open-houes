@@ -28,12 +28,7 @@ class LoginForm extends React.Component {
       .post(this.myfech(), this.state)
 
       .then((response) => {
-        console.log("myresponse", response.data.user_type);
-
-        // 1. get "user" object from server response
-        // user object should look like this: { 'name': 'abdo', 'email': 'foo@bar.com', 'id': 123 }
-
-        // send user object to App component
+        //console.log("myresponse", response.data.user_type);
         this.props.loginCallback(response.data);
         //this.props.loginCallback();
         if(response.data.user_type === 'Guest'){
@@ -42,21 +37,20 @@ class LoginForm extends React.Component {
         }else{
           this.props.history.push("ShowDataToHost");
         }
-
         
       })
       .catch((error) => {
-        //console.log(error);
+        console.log(error);
         //this.setState({ errorMessage: error });
-        if (error.response.status === 404) {
-          this.setState({ errorMessage: error.response.data });
-        } else if (error.response.status === 401) {
-          this.setState({ errorMessage: error.response.data });
-          // console.log("request", error.request);
-        } else {
-          //console.log("Error", error.message);
-          this.setState({ errorMessage: error });
-        }
+        // if (error.response.status === 404) {
+        //   this.setState({ errorMessage: error.response.data });
+        // } else if (error.response.status === 401) {
+        //   this.setState({ errorMessage: error.response.data });
+        //   // console.log("request", error.request);
+        // } else {
+        //   //console.log("Error", error.message);
+        //   this.setState({ errorMessage: error });
+        // }
       });
   };
 

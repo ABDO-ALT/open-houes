@@ -8,7 +8,7 @@ import Contact from "./components/Contact";
 import Host from "./components/Host";
 import Guest from "./components/Guest";
 import ShowDataToGuest from "./components/ShowDataToGuest";
-import ShowDataToHost from "./components/ShowDataToHost";
+import CreateRoomsForm from "./components/CreateRoomsForm";
 
 // App is not a class, it is a function!
 class App extends React.Component {
@@ -63,7 +63,7 @@ class App extends React.Component {
           />
           <Route
             path="/ShowDataToHost"
-            render={() => <ShowDataToHost loginCallback={this.state} />}
+            render={() => <CreateRoomsForm loginCallback={this.state} />}
           />
         </Switch>
       </Router>
