@@ -47,7 +47,7 @@ class GuestAndHostForm extends React.Component {
           console.log('yes')
           this.props.history.push("ShowDataToGuest");
         }else{
-          this.props.history.push("ShowDataToHost");
+          this.props.history.push("CreateRoomsForm");
         }
       })
       .catch((error) => {

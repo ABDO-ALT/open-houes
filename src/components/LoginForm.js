@@ -31,26 +31,25 @@ class LoginForm extends React.Component {
         //console.log("myresponse", response.data.user_type);
         this.props.loginCallback(response.data);
         //this.props.loginCallback();
-        if(response.data.user_type === 'Guest'){
-          console.log('yes')
+        if (response.data.user_type === "Guest") {
+          console.log("yes");
           this.props.history.push("ShowDataToGuest");
-        }else{
-          this.props.history.push("ShowDataToHost");
+        } else {
+          this.props.history.push("CreateRoomsForm");
         }
-        
       })
       .catch((error) => {
-        console.log(error);
-        //this.setState({ errorMessage: error });
-        // if (error.response.status === 404) {
-        //   this.setState({ errorMessage: error.response.data });
-        // } else if (error.response.status === 401) {
-        //   this.setState({ errorMessage: error.response.data });
-        //   // console.log("request", error.request);
-        // } else {
-        //   //console.log("Error", error.message);
-        //   this.setState({ errorMessage: error });
-        // }
+        // this.setState({ errorMessage: error });
+        // console.log("1", error.response);
+        if (error.response.status === 404) {
+          this.setState({ errorMessage: error.response.data });
+        } else if (error.response.status === 401) {
+          this.setState({ errorMessage: error.response.data });
+          // console.log("request", error.request);
+        } else {
+          //   //console.log("Error", error.message);
+          this.setState({ errorMessage: error });
+        }
       });
   };
 

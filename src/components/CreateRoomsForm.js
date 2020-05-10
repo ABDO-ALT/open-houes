@@ -1,6 +1,7 @@
 import React from "react";
 import "../App";
 import axios from "axios";
+import { withRouter } from "react-router-dom";
 class CreateRoomsForm extends React.Component {
   constructor(props) {
     super(props);
@@ -9,9 +10,8 @@ class CreateRoomsForm extends React.Component {
       start_date: "",
       end_date: "",
       city: "",
-      
     };
-    console.log(this.props.loginCallback.id)
+    console.log(this.props.loginCallback.id);
   }
   changeHandle = (e) => {
     this.setState({ [e.target.name]: e.target.value });
@@ -27,7 +27,8 @@ class CreateRoomsForm extends React.Component {
       .post(this.myfech(), this.state)
 
       .then((response) => {
-        console.log(response);
+        console.log("response of room", response);
+        this.props.history.push("ShowInfoToHost");
       })
       .catch((error) => {
         console.log(error);
@@ -85,5 +86,4 @@ class CreateRoomsForm extends React.Component {
     );
   }
 }
-export default CreateRoomsForm;
-
+export default withRouter(CreateRoomsForm);
