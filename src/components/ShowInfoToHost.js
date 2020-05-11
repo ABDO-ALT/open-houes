@@ -7,11 +7,11 @@ class ShowInfoToHost extends React.Component {
     this.state = {
       data: [],
     };
-    console.log("host", props.loginCallback);
+    console.log("host", props);
   }
 
   componentDidMount() {
-    const id = this.props.loginCallback.id;
+    const id = this.props.user.id;
     axios.get(`http://localhost:5000/rooms?clients_id=${id}`).then((res) => {
       this.setState({ data: res.data });
       console.log({ data: res.data });
@@ -19,9 +19,14 @@ class ShowInfoToHost extends React.Component {
       //console.log(res.data[1].age.split("").slice(0, 10).join(""));
     });
   }
+  formatDate(dateString){
+    console.log(dateString);
+    let date = new Date(dateString).toDateString()
+    return date
+  }
 
   render() {
-    if (this.props.loginCallback.loggedIn !== true) {
+    if (this.props.user.loggedIn !== true) {
       return <h1> YOU CANT SEE THIS!</h1>;
     }
     return (
@@ -32,8 +37,8 @@ class ShowInfoToHost extends React.Component {
               {data.first_name} {data.last_name}
             </p>
             <p> {data.city}</p>
-            <p> {data.start_date.split("").slice(0, 10).join("")}</p>
-            <p> {data.end_date.split("").slice(0, 10).join("")}</p>
+            <p> {this.formatDate(data.start_date)}</p>
+            <p> {this.formatDate(data.end_date)}</p>
           </li>
         ))}
       </ul>

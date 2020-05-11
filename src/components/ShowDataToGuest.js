@@ -8,6 +8,7 @@ class ShowDataToGuest extends React.Component {
     this.state = {
       data: [],
     };
+    this.formatDate = this.formatDate.bind(this);
   }
   componentDidMount() {
     axios.get(`http://localhost:5000/rooms`).then((res) => {
@@ -15,12 +16,22 @@ class ShowDataToGuest extends React.Component {
       console.log(res.data[1].age.split("").slice(0, 10).join(""));
     });
   }
+
+  formatDate(dateString) {
+    // turn into Date object
+    // then format!
+    console.log(dateString);
+    let date = new Date(dateString).toDateString();
+    return date;
+  }
+
   render() {
     //const { data}  = this.state;
-    // console.log(this.props.loginCallback)
+    // console.log(this.props.loginCallback)d
     if (this.props.loginCallback.loggedIn !== true) {
       return <p> YOU CANT SEE THIS!</p>;
     }
+
     return (
       <div>
         <h1>Welcome {this.props.loginCallback.first_name}</h1>
@@ -31,12 +42,20 @@ class ShowDataToGuest extends React.Component {
                 {data.first_name} {data.last_name}
               </p>
               <p> {data.city}</p>
-              <p> {data.phone_number}</p>
-              <p> {data.email}</p>
-              <p> {data.age.split("").slice(0, 10).join("")}</p>
+              <p>
+                <a href={`tel:${data.phone_number}`}>
+                  <button>{data.phone_number}</button>
+                </a>
+              </p>
+              <p>
+                <a href={`mailto:${data.email}`}>
+                  <button>{data.email}</button>
+                </a>
+              </p>
+              <p> {this.formatDate(data.age)}</p>
               <p> {data.gender}</p>
-              <p> {data.start_date.split("").slice(0, 10).join("")}</p>
-              <p> {data.end_date.split("").slice(0, 10).join("")}</p>
+              <p> {this.formatDate(data.start_date)}</p>
+              <p> {this.formatDate(data.end_date)}</p>
             </li>
           ))}
         </ul>

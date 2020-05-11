@@ -62,7 +62,7 @@ class App extends React.Component {
           />
           <Route
             path="/ShowInfoToHost"
-            render={() => <ShowInfoToHost loginCallback={this.state}/>}
+            render={() => <ShowInfoToHost user={this.state}/>}
           />
         </Switch>
       </Router>

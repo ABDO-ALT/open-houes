@@ -79,6 +79,7 @@ nav a:hover::before {
 }
 
 .host {
+  background-color: cyan;
   margin: 0 auto;
   font-size: large;
   height: 100%;
@@ -98,6 +99,7 @@ nav a:hover::before {
 }
 
 .guest {
+  background-color: cyan;
   margin: 0 auto;
   font-size: large;
   height: 100%;

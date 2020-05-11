@@ -2,6 +2,7 @@ import React from "react";
 import "../App";
 import axios from "axios";
 import { withRouter } from "react-router-dom";
+import { Link } from "react-router-dom";
 class CreateRoomsForm extends React.Component {
   constructor(props) {
     super(props);
@@ -81,6 +82,10 @@ class CreateRoomsForm extends React.Component {
           ></input>
           <br />
           <button type="submit">creat</button>
+          <br />
+          <Link to="ShowInfoToHost">
+            <button type="submit">see your rooms</button>
+          </Link>
         </form>
       </div>
     );
