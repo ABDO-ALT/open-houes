@@ -3,32 +3,63 @@ import "../App";
 import axios from "axios";
 import { withRouter } from "react-router-dom";
 import { Link } from "react-router-dom";
-class CreateRoomsForm extends React.Component {
+class DeleteHoostRooms extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      clients_id: props.loginCallback.id,
       start_date: "",
       end_date: "",
       city: "",
     };
-    //console.log(this.props.loginCallback.id);
+    // this.state = {
+    //   room: this.getRoom(this.props.match.params.Id)
+    // };
+
+    // props.userInfo.rooms.forEach((room) => {
+    //   let roomId = parseFloat(props.match.params.Id);
+    //   if (room.id === roomId) {
+    //     this.state = {
+    //       start_date: room.start_date.slice(0, 10),
+    //       end_date: room.end_date.slice(0, 10),
+    //       city: room.city,
+    //     };
+    //   }
+    // });
+
+    console.log(props.match.params.Id);
+    console.log("updated props", props);
   }
+
+  // getRoom(roomId) {
+
+  // }
+
+  componentDidMount() {
+    const id = parseFloat(this.props.match.params.Id);
+    axios.get(`http://localhost:5000/rooms/${id}`).then((res) => {
+      // call this.setState with new room info
+      console.log(res);
+      this.setState({
+        start_date: res.data[0].start_date.slice(0, 10),
+        end_date: res.data[0].end_date.slice(0, 10),
+        city: res.data[0].city,
+      });
+      console.log("respons of componentDidMount", res);
+    });
+  }
+
   changeHandle = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  myfech() {
-    return `http://localhost:5000/rooms`;
-  }
   submitHandle = (e) => {
     e.preventDefault();
+    const id = this.props.match.params.Id;
     axios
-      .post(this.myfech(), this.state)
-
-      .then((response) => {
-        console.log("response of room", response);
-        this.props.history.push("ShowInfoToHost");
+      .delete(`http://localhost:5000/rooms/${id}`, this.state)
+      .then((res) => {
+        console.log("response of room", res);
+        this.props.history.push("/ShowInfoToHost");
       })
       .catch((error) => {
         console.log(error);
@@ -39,13 +70,12 @@ class CreateRoomsForm extends React.Component {
   render() {
     const { start_date, end_date, city } = this.state;
 
-    if (this.props.loginCallback.loggedIn !== true) {
-      return <p> YOU CANT SEE THIS!</p>;
+    if (this.props.userInfo.loggedIn !== true) {
+      return <h1> YOU CANT SEE THIS!</h1>;
     }
+
     return (
       <div>
-        {" "}
-        <h1>hi - Welcome {this.props.loginCallback.first_name}</h1>
         <form onSubmit={this.submitHandle}>
           <label htmlFor="start_date">Start Date</label>
           <br />
@@ -80,14 +110,14 @@ class CreateRoomsForm extends React.Component {
             onChange={this.changeHandle}
           ></input>
           <br />
-          <button type="submit">creat</button>
+          <button type="submit">adit</button>
           <br />
-          <Link to="ShowInfoToHost">
-            <button type="submit">see your rooms</button>
+          <Link to="/">
+            <button type="submit">BACK TO Home</button>
           </Link>
         </form>
       </div>
     );
   }
 }
-export default withRouter(CreateRoomsForm);
+export default withRouter(DeleteHostRooms);

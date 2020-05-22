@@ -20,6 +20,7 @@ class GuestAndHostForm extends React.Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.userHandleChange = this.userHandleChange.bind(this);
+    //console.log(props)
   }
   userHandleChange(e) {
     this.setState({ user_type: e.target.value });
@@ -35,13 +36,15 @@ class GuestAndHostForm extends React.Component {
   myfech() {
     return `http://localhost:5000/clients`;
   }
+  
+  
   submitHandle = (e) => {
     e.preventDefault();
-    console.log("this.sdsf", this.state);
+    console.log("this.state", this.state);
     axios
       .post(this.myfech(), this.state)
       .then((response) => {
-        console.log("regstr",response.data );
+        //console.log("respons.data",response.data );
         this.props.loginCallback(response.data);
         if(response.data.user_type === 'Guest'){
           console.log('yes')
@@ -62,6 +65,7 @@ class GuestAndHostForm extends React.Component {
       });
   };
   render() {
+    
     const {
       first_name,
       last_name,

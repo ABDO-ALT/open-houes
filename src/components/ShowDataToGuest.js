@@ -13,7 +13,7 @@ class ShowDataToGuest extends React.Component {
   componentDidMount() {
     axios.get(`http://localhost:5000/rooms`).then((res) => {
       this.setState({ data: res.data });
-      console.log(res.data[1].age.split("").slice(0, 10).join(""));
+      //console.log(res.data[1].age.split("").slice(0, 10).join(""));
     });
   }
 

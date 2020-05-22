@@ -1,13 +1,13 @@
 import React from "react";
 import "../App";
 import { Link } from "react-router-dom";
-
+import logo from "./images/logo.png";
 function MainBar() {
   return (
     <div>
       <header>
         <div className="container">
-          <img src={"./logo.png"} alt="logo" className="logo" />
+          <img src={logo} alt="logo" className="logo" />
           <nav>
             <ul>
               <li>

@@ -11,7 +11,7 @@ class LoginForm extends React.Component {
       password: "",
       errorMessage: "",
     };
-    // console.log("Login form", this.props);
+     console.log("Login form", this.props);
   }
 
   changeHandle = (e) => {
@@ -32,7 +32,6 @@ class LoginForm extends React.Component {
         this.props.loginCallback(response.data);
         //this.props.loginCallback();
         if (response.data.user_type === "Guest") {
-          console.log("yes");
           this.props.history.push("ShowDataToGuest");
         } else {
           this.props.history.push("CreateRoomsForm");
