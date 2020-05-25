@@ -3,7 +3,7 @@ import "../App";
 import axios from "axios";
 import { withRouter } from "react-router-dom";
 import { Link } from "react-router-dom";
-class DeleteHoostRooms extends React.Component {
+class DeleteHostRooms extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -11,21 +11,6 @@ class DeleteHoostRooms extends React.Component {
       end_date: "",
       city: "",
     };
-    // this.state = {
-    //   room: this.getRoom(this.props.match.params.Id)
-    // };
-
-    // props.userInfo.rooms.forEach((room) => {
-    //   let roomId = parseFloat(props.match.params.Id);
-    //   if (room.id === roomId) {
-    //     this.state = {
-    //       start_date: room.start_date.slice(0, 10),
-    //       end_date: room.end_date.slice(0, 10),
-    //       city: room.city,
-    //     };
-    //   }
-    // });
-
     console.log(props.match.params.Id);
     console.log("updated props", props);
   }
@@ -44,7 +29,6 @@ class DeleteHoostRooms extends React.Component {
         end_date: res.data[0].end_date.slice(0, 10),
         city: res.data[0].city,
       });
-      console.log("respons of componentDidMount", res);
     });
   }
 
@@ -60,12 +44,10 @@ class DeleteHoostRooms extends React.Component {
       .then((res) => {
         console.log("response of room", res);
         this.props.history.push("/ShowInfoToHost");
-      })
-      .catch((error) => {
-        console.log(error);
-        //console.log("Error", error.message);
-        //this.setState({ errorMessage: error });
       });
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
   };
   render() {
     const { start_date, end_date, city } = this.state;
@@ -86,6 +68,7 @@ class DeleteHoostRooms extends React.Component {
             type="date"
             value={start_date}
             onChange={this.changeHandle}
+            disabled
           ></input>
           <br />
           <label htmlFor="end_date"> End Date</label>
@@ -97,6 +80,7 @@ class DeleteHoostRooms extends React.Component {
             name="end_date"
             value={end_date}
             onChange={this.changeHandle}
+            disabled
           ></input>
           <br />
           <label htmlFor="end_date"> Your city</label>
@@ -108,12 +92,13 @@ class DeleteHoostRooms extends React.Component {
             name="city"
             value={city}
             onChange={this.changeHandle}
+            disabled
           ></input>
           <br />
-          <button type="submit">adit</button>
+          <button type="submit">delete</button>
           <br />
-          <Link to="/">
-            <button type="submit">BACK TO Home</button>
+          <Link to="/ShowInfoToHost">
+            <button type="submit">See your rooms</button>
           </Link>
         </form>
       </div>

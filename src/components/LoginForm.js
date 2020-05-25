@@ -11,7 +11,6 @@ class LoginForm extends React.Component {
       password: "",
       errorMessage: "",
     };
-     console.log("Login form", this.props);
   }
 
   changeHandle = (e) => {
@@ -23,14 +22,12 @@ class LoginForm extends React.Component {
   }
   submitHandle = (e) => {
     e.preventDefault();
-    //console.log(this.state);
     axios
       .post(this.myfech(), this.state)
 
       .then((response) => {
-        //console.log("myresponse", response.data.user_type);
         this.props.loginCallback(response.data);
-        //this.props.loginCallback();
+
         if (response.data.user_type === "Guest") {
           this.props.history.push("ShowDataToGuest");
         } else {
@@ -38,15 +35,11 @@ class LoginForm extends React.Component {
         }
       })
       .catch((error) => {
-        // this.setState({ errorMessage: error });
-        // console.log("1", error.response);
         if (error.response.status === 404) {
           this.setState({ errorMessage: error.response.data });
         } else if (error.response.status === 401) {
           this.setState({ errorMessage: error.response.data });
-          // console.log("request", error.request);
         } else {
-          //   //console.log("Error", error.message);
           this.setState({ errorMessage: error });
         }
       });

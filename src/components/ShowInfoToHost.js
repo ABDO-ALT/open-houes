@@ -12,52 +12,62 @@ class ShowInfoToHost extends React.Component {
   }
   componentDidMount() {
     const id = this.props.user.id;
-    axios.get(`http://localhost:5000/rooms?clients_id=${id}`).then((res) => {
-      console.log("res in get", res.data);
-      //this.props.roomsdata(res.data)
-      console.log(this.props.roomsCallback(res.data));
-
-      this.setState({ data: res.data });
-    });
+    axios
+      .get(`http://localhost:5000/rooms?clients_id=${id}`)
+      .then((res) => {
+        console.log("res in get", res.data.length);
+        this.setState({ data: res.data });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   formatDate(dateString) {
     let date = new Date(dateString).toDateString();
     return date;
   }
-  
 
   render() {
+    console.log("this.state");
     if (this.props.user.loggedIn !== true) {
       return <h1> YOU CANT SEE THIS!</h1>;
+    } else if (this.state.data.length === 0) {
+      return (
+        <div>
+          <h1>you don't have room</h1>
+          <Link to="CreateRoomsForm">
+            <button>Create</button>
+          </Link>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <ul>
+            {this.state.data.map((data, index) => (
+              <li key={index}>
+                <p>
+                  {data.first_name} {data.last_name}
+                </p>
+                <p> {data.city}</p>
+                <p> {this.formatDate(data.start_date)}</p>
+                <p> {this.formatDate(data.end_date)}</p>
+                <Link to={`UpdatedRooms/${data.id}`}>
+                  <button>{data.id}edit</button>
+                </Link>
+                <Link to={`DeleteHostRooms/${data.id}`}>
+                  <button>{data.id}Delet</button>
+                </Link>
+                <Link to="CreateRoomsForm">
+                  <button>Create</button>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      );
     }
-    return (
-      <div>
-        <ul>
-          {this.state.data.map((data, index) => (
-            // for each room
-            // show edit button
-            // THEN
-            // you have roomId in data (data.id or something)!
-            // So, you could pass it in the Link
-            // Link to = 'UpdateRooms/46'
-            <li key={index}>
-              <p>
-                {data.first_name} {data.last_name}
-              </p>
-              <p> {data.city}</p>
-              <p> {this.formatDate(data.start_date)}</p>
-              <p> {this.formatDate(data.end_date)}</p>
-              <Link
-                to={`UpdatedRooms/${data.id}`}
-              >
-                <button>{data.id}edit</button>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </div>
-    );
   }
 }
 

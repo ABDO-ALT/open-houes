@@ -11,6 +11,7 @@ import ShowDataToGuest from "./components/ShowDataToGuest";
 import CreateRoomsForm from "./components/CreateRoomsForm";
 import ShowInfoToHost from "./components/ShowInfoToHost";
 import UpdatedRooms from "./components/UpdatedRooms";
+import DeleteHostRooms from "./components/DeleteHostRooms";
 
 // App is not a class, it is a function!
 class App extends React.Component {
@@ -28,8 +29,6 @@ class App extends React.Component {
   }
 
   loginCallback(respons) {
-    // Get user info from here and add to state
-    console.log("respons of call back", respons);
     this.setState({
       loggedIn: true,
       id: respons.id,
@@ -39,14 +38,12 @@ class App extends React.Component {
   }
 
   roomsCallback(rooms) {
-    console.log("rooms called back: ", rooms);
     this.setState({
       rooms: rooms,
     });
   }
 
   render() {
-    console.log("state of App: ", this.state);
     return (
       <Router>
         <MainBar />
@@ -82,6 +79,10 @@ class App extends React.Component {
           <Route
             path="/UpdatedRooms/:Id"
             render={() => <UpdatedRooms userInfo={this.state} />}
+          />
+          <Route
+            path="/DeleteHostRooms/:Id"
+            render={() => <DeleteHostRooms userInfo={this.state} />}
           />
         </Switch>
       </Router>
